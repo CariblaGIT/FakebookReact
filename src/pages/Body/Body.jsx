@@ -5,9 +5,8 @@ import { Register } from "../Register/Register";
 export const Body = () => {
     return (
         <Routes>
-            <Route index element={<Navigate to="/login" replace />} />
-            <Route path="*" element={<Navigate to={"/login"} replace/>} />
-            <Route path="/login" element={<Login />} />
+            <Route path="*" element={<Navigate to={"/"} replace/>} />
+            <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
         </Routes>
     );
