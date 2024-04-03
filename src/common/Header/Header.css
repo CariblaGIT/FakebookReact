@@ -1,0 +1,10 @@
+.headerDesign{
+    height: 12vh;
+    width: 100vw;
+
+    background-color: #597199;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
