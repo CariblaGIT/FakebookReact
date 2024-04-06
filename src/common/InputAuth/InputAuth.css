@@ -1,0 +1,21 @@
+.inputAuthDesign{
+    width: 100%;
+    max-width: 20em;
+    height: 3em;
+    display: flex;
+    flex-direction: column;
+    text-align: flex-start;
+    margin: 0.5em;
+}
+
+.inputAuthForm{
+    border: 1px solid var(--electric-blue);
+    background-color: var(--white-bone);
+    border-radius: .5em;
+    height: 3em;
+}
+
+.inputAuthForm:focus{
+    border: 1px solid var(--electric-blue-secondary);
+    outline: none;
+}

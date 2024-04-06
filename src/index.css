@@ -11,6 +11,18 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --white-bone: #fafafa;
+  --main-blue: #597199;
+  --main-blue-secondary: #3f619b;
+  --light-blue-buttons: #4285F4;
+  --light-blue-buttons-secondary: #357ae8;
+  --electric-blue: #1b6fff;
+  --electric-blue-secondary: #1450b9;
+  --secondary-blue: #2e4682;
+  --main-dark-blue: #1d306d;
+  --grey-box-boundary: #dbdbdb;
+  --grey-disabled: #6d6d6d;
 }
 
 a {
@@ -26,7 +38,6 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
   min-height: 100vh;
 }
 
