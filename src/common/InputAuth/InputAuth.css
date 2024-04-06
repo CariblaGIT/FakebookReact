@@ -1,5 +1,4 @@
 .inputAuthDesign{
-    width: 100%;
     max-width: 20em;
     height: 3em;
     display: flex;
@@ -10,9 +9,10 @@
 
 .inputAuthForm{
     border: 1px solid var(--electric-blue);
-    background-color: var(--white-bone);
+    background-color: var(--white);
     border-radius: .5em;
     height: 3em;
+    width: 20em;
 }
 
 .inputAuthForm:focus{

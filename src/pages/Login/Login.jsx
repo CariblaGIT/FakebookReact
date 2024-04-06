@@ -93,7 +93,7 @@ export const Login = () => {
                     disabled={notAllowToLogin}
                 />
                 <div className={(!success ? "loginError" : "loginSuccess")}>{msgSuccess}</div>
-                <div className="line"/>
+                <div className="lineLogin"/>
                 <GoogleButton/>
                 <div className="forgetPassword">
                     <a className="registerLink">Do you forget your password?</a>

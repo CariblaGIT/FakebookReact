@@ -61,7 +61,7 @@
     margin: 0.5em;
 }
 
-.line{
+.lineLogin{
     width: 20em;
     height: 47px;
     border-bottom: 1px solid black;
@@ -71,12 +71,12 @@
     z-index: -1;
 }
 
-.line::after{
+.lineLogin::after{
     content: "O";
     background-color: #fff;
     padding: 1em;
     position: relative;
-    bottom: -2.6em;
+    bottom: -2.5em;
 }
 
 .gifLogin{
