@@ -3,16 +3,33 @@ import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { userData } from "../../app/modules/userModules";
+import { timelineService } from "../../services/apiCalls";
 
 export const Timeline = () => {
     const navigate = useNavigate()
-    const userLogged = useSelector(userData);
+    const [posts, setPosts] = useState([])
+    const userToken = (useSelector(userData)).credentials.token
+    const [loadedPosts, setLoadedPosts] = useState(false)
 
     useEffect(() => {
-        if (!userLogged.credentials.token) {
-            navigate("/accounts/login");
+        if (!userToken) {
+            navigate("/accounts/login")
         }
-    }, [userLogged]);
+    }, [userToken])
+
+    useEffect(() => {
+        const getUserTimeline = async () => {
+            try {
+                const fetched = await timelineService(userToken)
+                setLoadedPosts(true)
+                setPosts(fetched.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    
+        if (!loadedPosts) { getUserTimeline() }
+    }, [posts])
     
     return (
         <div className="timelineDesign">
