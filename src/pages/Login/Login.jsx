@@ -53,9 +53,11 @@ export const Login = () => {
                 token: fetched.token,
                 decoded: decodedToken,
             }
-
-            setMsgSuccess("")
             dispatch(login({ credentials: passport }))
+            setMsgSuccess(fetched.message + "\n" + "Redirecting to your timeline")
+            setTimeout(() => {
+                navigate("/timeline")
+            }, 2000)
         } catch (error) {
             setSuccess(false)
             setMsgSuccess(error.message)
