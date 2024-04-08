@@ -4,12 +4,17 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { userData } from "../../app/modules/userModules";
 import { timelineService } from "../../services/apiCalls";
+import { PostCard } from "../../common/PostCard/PostCard";
 
 export const Timeline = () => {
     const navigate = useNavigate()
     const [posts, setPosts] = useState([])
     const userToken = (useSelector(userData)).credentials.token
     const [loadedPosts, setLoadedPosts] = useState(false)
+
+    // useEffect(() => {
+    //     console.log(posts);
+    // }, [posts])
 
     useEffect(() => {
         if (!userToken) {
@@ -33,7 +38,11 @@ export const Timeline = () => {
     
     return (
         <div className="timelineDesign">
-            Im the timeline
+            {posts.map(item => {
+                return (
+                    <PostCard post={item}/>
+                )
+            })}
         </div>
     )
 }
