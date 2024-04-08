@@ -40,7 +40,7 @@ export const Timeline = () => {
         <div className="timelineDesign">
             {posts.map(item => {
                 return (
-                    <PostCard post={item}/>
+                    <PostCard key={item._id} post={item}/>
                 )
             })}
         </div>

@@ -17,7 +17,6 @@
     width: 100vw;
     height: 5vh;
     margin-top: 1em;
-    margin-bottom: 1em;
 
     display: flex;
     flex-direction: row;
@@ -66,6 +65,12 @@
 }
 
 .likeIcon, .commentIcon{
+    font-size: 2em;
+    margin: 0.3em;
+}
+
+.likedIcon{
+    color: red;
     font-size: 2em;
     margin: 0.3em;
 }

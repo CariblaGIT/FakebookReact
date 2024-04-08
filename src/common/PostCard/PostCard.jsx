@@ -1,8 +1,23 @@
 import "./PostCard.css";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { userData } from "../../app/modules/userModules";
 
 export const PostCard = ({post}) => {
     const imgsRoot = "https://fakebook-production-b29b.up.railway.app/api/public/"
+    const userId = (useSelector(userData)).credentials.decoded.userId
     const arrayContent = post.content
+    const [isLiked, setIsLiked] = useState(false)
+    const arrayLikes = post.likes
+
+    useEffect(() => {
+        for(let i = 0; i < arrayLikes.length; i++){
+            if(arrayLikes[i]._id === userId){
+                setIsLiked(true)
+            }
+        }
+    }, [isLiked])
+    
     return (
         <div key={post._id} className="postCard">
             <div className="postCardHeader">
@@ -18,13 +33,13 @@ export const PostCard = ({post}) => {
             </div>
             <div className="postInteractions">
                 <div className="buttonsInteractions">
-                    <i className="bi bi-heart likeIcon"></i>
+                    <i className={`bi bi-heart${isLiked ? "-fill likedIcon" : "likeIcon"}`}></i>
                     <i className="bi bi-chat commentIcon"></i>
                 </div>
             </div>
             <div className="postData">
                 <div className="postLikes">
-                    <p>{post.likes.length} likes</p>
+                    <p>{arrayLikes.length} likes</p>
                 </div>
                 <div className="postText">
                     <p><b>{post.owner.name}</b> {post.text}</p>
