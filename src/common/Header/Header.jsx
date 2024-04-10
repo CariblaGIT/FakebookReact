@@ -6,7 +6,7 @@ export const Header = () => {
     if(location.pathname !== "/accounts/login" && location.pathname !== "/accounts/register"){
         return (
             <div className="headerDesign">
-                <div className="appName">
+                <div className="appNameHeader">
                     <h3>Fakebook</h3>
                 </div>
                 <div className="userInteractions">

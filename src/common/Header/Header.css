@@ -9,14 +9,14 @@
     justify-content: center;
 }
 
-.appName, .userInteractions{
+.appNameHeader, .userInteractions{
     height: 12vh;
     width: 50vw;
     display: flex;
     align-items: center;
 }
 
-.appName{
+.appNameHeader{
     justify-content: flex-start;
     padding-left: 1em;
 }
