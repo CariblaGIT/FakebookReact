@@ -1,0 +1,28 @@
+.footerDesign{
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 10vh;
+    border-top: 1px solid #acacac;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.section{
+    width: 25vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.homeIcon, .postIcon, .searchIcon, .profileIcon{
+    font-size: 1.5em;
+}
+
+.selected{
+    -webkit-text-stroke: 2px;
+}

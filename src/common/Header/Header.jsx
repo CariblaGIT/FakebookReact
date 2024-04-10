@@ -6,7 +6,13 @@ export const Header = () => {
     if(location.pathname !== "/accounts/login" && location.pathname !== "/accounts/register"){
         return (
             <div className="headerDesign">
-                Im header
+                <div className="appName">
+                    <h3>Fakebook</h3>
+                </div>
+                <div className="userInteractions">
+                    <i className="bi bi-star favouritesIcon"></i>
+                    <i className="bi bi-send privatesIcon"></i>
+                </div>
             </div>
         )
     }
