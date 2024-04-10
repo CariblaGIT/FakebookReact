@@ -30,7 +30,7 @@
 .postCardHeader{
     width: 100vw;
     height: 5vh;
-    padding-top: 1em;
+    padding-top: 1.5em;
     padding-bottom: 1em;
     margin-top: 2em;
     margin-bottom: 1em;
@@ -110,6 +110,7 @@
 
 .postLikes p, .postText p{
     padding-left: 0.5em;
+    margin-block-end: 0em;
 }
 
 .postText{

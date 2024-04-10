@@ -1,12 +1,18 @@
 import './Footer.css';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const Footer = () => {
     const location = useLocation()
+    const navigate = useNavigate()
+
+    const navigateToTimeline = () => {
+        navigate("/timeline")
+    }
+
     if(location.pathname !== "/accounts/login" && location.pathname !== "/accounts/register"){
         return (
             <footer className="footerDesign">
-                <div className="section">
+                <div className="section" onClick={location.pathname !== "/timeline" ? () => navigateToTimeline : () => console.log("Im on timeline")}>
                     <i className={`bi bi-house homeIcon ${location.pathname === "/timeline" ? "selected" : ""}`}></i>
                 </div>
                 <div className="section">
