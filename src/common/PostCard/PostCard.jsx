@@ -17,7 +17,16 @@ export const PostCard = ({post}) => {
             }
         }
     }, [isLiked])
-    
+
+    const likeInteraction = () => {
+        console.log("Liked // Disliked");
+        isLiked ? setIsLiked(false) : setIsLiked(true)
+    }
+
+    const commentInteraction = () => {
+        console.log("Commenting");
+    }
+
     return (
         <div key={post._id} className="postCard">
             <div className="postCardHeader">
@@ -33,8 +42,8 @@ export const PostCard = ({post}) => {
             </div>
             <div className="postInteractions">
                 <div className="buttonsInteractions">
-                    <i className={`bi bi-heart${isLiked ? "-fill likedIcon" : "likeIcon"}`}></i>
-                    <i className="bi bi-chat commentIcon"></i>
+                    <i onClick={likeInteraction} className={`bi bi-heart${isLiked ? "-fill likedIcon" : "likeIcon"}`}></i>
+                    <i onClick={commentInteraction} className="bi bi-chat commentIcon"></i>
                 </div>
             </div>
             <div className="postData">

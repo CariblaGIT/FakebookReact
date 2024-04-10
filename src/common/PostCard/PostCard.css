@@ -11,6 +11,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 .postInteractions{
@@ -30,6 +33,7 @@
     padding-top: 1em;
     padding-bottom: 1em;
     margin-top: 2em;
+    margin-bottom: 1em;
 
     display: flex;
     flex-direction: row;
@@ -44,7 +48,7 @@
 }
 
 .userIcon{
-    height: 3em;
+    height: 2em;
     width: 3em;
     margin-right: 1em;
     padding-left: 1em;
@@ -67,12 +71,24 @@
 .likeIcon, .commentIcon{
     font-size: 2em;
     margin: 0.3em;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.likeIcon:hover, .commentIcon:hover{
+    color: grey;
+    transition: 0.5s;
 }
 
 .likedIcon{
     color: red;
     font-size: 2em;
     margin: 0.3em;
+}
+
+.likedIcon:hover{
+    color: #bc0000;
+    transition: 0.5s;
 }
 
 .postData{
