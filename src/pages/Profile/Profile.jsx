@@ -7,8 +7,13 @@ import { getOwnPostsService, getProfileService } from "../../services/apiCalls";
 
 export const Profile = () => {
     const navigate = useNavigate()
-    const [userProfile, setUserProfile] = useState({})
-    const [userPosts, setUserPosts] = useState({})
+    const [userProfile, setUserProfile] = useState({
+        name: "",
+        email: "",
+        followers: [],
+        following: []
+    })
+    const [userPosts, setUserPosts] = useState([])
     const [loadedUserProfile, setLoadedUserProfile] = useState(false)
     const [loadedUserPosts, setLoadedUserPosts] = useState(false)
     const userToken = (useSelector(userData)).credentials.token
@@ -75,9 +80,21 @@ export const Profile = () => {
                 <button className="buttonsProfileInteracions">Edit profile</button>
                 <button className="buttonsProfileInteracions">Share</button>
             </div>
-            <div className="profileOwnPosts">
-                Make posts to shown it here
-            </div>
+                {!userPosts.length ? (
+                    <div className="profileNoOwnPosts">
+                        Make posts to shown it here
+                    </div>
+                ) : (
+                    <div className="profileOwnPosts">
+                        {userPosts.map(item => {
+                            return (
+                                <div key={item._id} className="postCardView">
+                                    <img className="postPreviewImg" src={item.content[0]}/>
+                                </div>
+                            )
+                        })}
+                    </div>
+                )}
         </div>
     )
 }
