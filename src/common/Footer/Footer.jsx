@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 export const Footer = () => {
     const location = useLocation()
     const navigate = useNavigate()
+    const locations = ["/timeline", "/profile"]
 
     const navigateToTimeline = () => {
         navigate("/timeline")
@@ -13,7 +14,7 @@ export const Footer = () => {
         navigate("/profile")
     }
 
-    if(location.pathname !== "/accounts/login" && location.pathname !== "/accounts/register"){
+    if(locations.includes(location.pathname)){
         return (
             <footer className="footerDesign">
                 <div className="section" onClick={location.pathname !== "/timeline" ? navigateToTimeline : console.log("Im on timeline")}>

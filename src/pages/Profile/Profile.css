@@ -70,7 +70,7 @@
 }
 
 .profileNoOwnPosts{
-    min-height: 50vh;
+    min-height: 58vh;
 
     display: flex;
     align-items: center;
@@ -78,20 +78,22 @@
 }
 
 .profileOwnPosts{
-    min-height: 50vh;
+    min-height: 58vh;
+    width: 100vw;
 
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
+    grid-gap: 10px;
 
     padding-bottom: 10vh;
 }
 
 .postCardView{
     padding: 10px;
+    height: 20vh;
 }
 
 .postPreviewImg{
     max-width: 100%;
-    height: auto;
+    height: 20vh;
 }

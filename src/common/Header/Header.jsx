@@ -3,7 +3,8 @@ import { useLocation } from "react-router-dom";
 
 export const Header = () => {
     const location = useLocation()
-    if(location.pathname !== "/accounts/login" && location.pathname !== "/accounts/register"){
+    const locations = ["/timeline", "/profile"]
+    if(locations.includes(location.pathname)){
         return (
             <div className="headerDesign">
                 <div className="appNameHeader">

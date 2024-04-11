@@ -54,6 +54,10 @@ export const Profile = () => {
         if(!loadedUserPosts) { getUserPostsData() }
     }, [userPosts])
 
+    const navigateToUpdateProfile = () => {
+        navigate("/profile/edit")
+    }
+
     return (
         <div className="profileDesign">
             <div className="userProfileData">
@@ -77,7 +81,7 @@ export const Profile = () => {
                 </div>
             </div>
             <div className="profileInteractions">
-                <button className="buttonsProfileInteracions">Edit profile</button>
+                <button onClick={() => navigateToUpdateProfile()} className="buttonsProfileInteracions">Edit profile</button>
                 <button className="buttonsProfileInteracions">Share</button>
             </div>
                 {!userPosts.length ? (
