@@ -3,12 +3,14 @@ import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { userData } from "../../app/modules/userModules";
-import { getProfileService } from "../../services/apiCalls";
+import { getOwnPostsService, getProfileService } from "../../services/apiCalls";
 
 export const Profile = () => {
     const navigate = useNavigate()
     const [userProfile, setUserProfile] = useState({})
+    const [userPosts, setUserPosts] = useState({})
     const [loadedUserProfile, setLoadedUserProfile] = useState(false)
+    const [loadedUserPosts, setLoadedUserPosts] = useState(false)
     const userToken = (useSelector(userData)).credentials.token
     const userDataToken = (useSelector(userData)).credentials.decoded
     const imgsRoot = "https://fakebook-production-b29b.up.railway.app/api/public/"
@@ -33,6 +35,20 @@ export const Profile = () => {
         if(!loadedUserProfile) { getUserProfileData() }
     }, [userProfile])
 
+    useEffect(() => {
+        const getUserPostsData = async () => {
+            try {
+                const fetched = await getOwnPostsService(userToken)
+                setLoadedUserPosts(true)
+                setUserPosts(fetched.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        if(!loadedUserPosts) { getUserPostsData() }
+    }, [userPosts])
+
     return (
         <div className="profileDesign">
             <div className="userProfileData">
@@ -42,15 +58,15 @@ export const Profile = () => {
                 </div>
                 <div className="profileInteractionsData">
                     <div className="postsData">
-                        <p className="resaltedData">0</p>
+                        <p className="resaltedData">{userPosts.length || 0}</p>
                         <p>posts</p>
                     </div>
                     <div className="followersData">
-                        <p className="resaltedData">{userProfile.followers.length}</p>
+                        <p className="resaltedData">{userProfile.followers.length || 0}</p>
                         <p>followers</p>
                     </div>
                     <div className="followingData">
-                        <p className="resaltedData">{userProfile.following.length}</p>
+                        <p className="resaltedData">{userProfile.following.length || 0}</p>
                         <p>following</p>
                     </div>
                 </div>
