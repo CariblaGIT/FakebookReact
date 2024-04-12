@@ -45,7 +45,6 @@
     height: 5em;
     width: 5em;
     border-radius: 50%;
-    background-color: blue;
 }
 
 .userUpdateProfileIcon{
@@ -92,4 +91,8 @@
 .saveLocalChanges:disabled{
     background-color: grey;
     color: #fff;
+}
+
+.fileSelector{
+    display: none;
 }

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { userData } from "../../app/modules/userModules";
 import { InputProfile } from "../../common/InputProfile/InputProfile";
 import { getProfileService } from "../../services/apiCalls";
+import placeholderUpdateAvatar from "../../assets/placeholder_update_profile.png";
 
 export const UpdateProfile = () => {
     const navigate = useNavigate()
@@ -13,6 +14,7 @@ export const UpdateProfile = () => {
     const imgsRoot = "https://fakebook-production-b29b.up.railway.app/api/public/"
     const [loadedUserProfile, setLoadedUserProfile] = useState(false)
     const [changesDetected, setChangesDetected] = useState("disabled")
+    const [imageSrc, setImageSrc] = useState(null)
     
     const [userProfileData, setUserProfileData] = useState({
         user: "",
@@ -52,6 +54,7 @@ export const UpdateProfile = () => {
     }, [userProfileData])
 
     useEffect(() => {
+        console.log(userProfileData)
         if(JSON.stringify(userProfileData) !== JSON.stringify(userProfilePrevData)){
             setChangesDetected("")
         } else {
@@ -70,6 +73,22 @@ export const UpdateProfile = () => {
         }))
     }
 
+    const handleFileChange = (e) => {
+        if (e.target.files) {
+            setUserProfileData({
+                user: userProfileData.user,
+                avatar: e.target.files[0]
+            })
+
+            const reader = new FileReader()
+            reader.onload = (e) => {
+                setImageSrc(e.target.result)
+            }
+            reader.readAsDataURL(e.target.files[0])
+              
+        }
+    }
+
     return (
         <div className="updateProfileDesign">
             <div className="headerUpdateProfile">
@@ -80,10 +99,17 @@ export const UpdateProfile = () => {
                 <div className="profileIconUpdateProfile">
                     <img className="userUpdateProfileIcon" src={`${imgsRoot}avatar/${userDataToken.avatar}`}/>
                 </div>
-                <div className="profileAvatarUpdateProfile"></div>
+                <div className="profileAvatarUpdateProfile">
+                    {imageSrc ? (
+                        <img className="userUpdateProfileIcon" src={imageSrc} alt="Selected Image" />
+                    ) : (
+                        <img className="userUpdateProfileIcon" src={placeholderUpdateAvatar} alt="Selected Image" />
+                    )}
+                </div>
             </div>
             <div className="linkOpenAvatarFile">
-                <a>Select avatar file</a>
+                <label htmlFor="file">Select new avatar</label>
+                <input id="file" type="file" name="avatar" className="fileSelector" onChange={handleFileChange}/>
             </div>
             <div className="formUserDataToUpdate">
                 <InputProfile
