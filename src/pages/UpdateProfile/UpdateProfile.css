@@ -77,3 +77,19 @@
     align-items: center;
     justify-content: flex-start;
 }
+
+.saveLocalChanges{
+    background-color: greenyellow;
+    margin: 1em;
+    border-radius: 8%;
+    color: #fff;
+}
+
+.saveButtonIcon{
+    margin-left: 0.5em; 
+}
+
+.saveLocalChanges:disabled{
+    background-color: grey;
+    color: #fff;
+}
