@@ -50,6 +50,7 @@
 .userUpdateProfileIcon{
     height: 5em;
     width: 5em;
+    border-radius: 50%;
 }
 
 .linkOpenAvatarFile{

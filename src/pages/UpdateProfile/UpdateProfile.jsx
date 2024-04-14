@@ -1,28 +1,31 @@
 import "./UpdateProfile.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { update } from "../../app/modules/userModules";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { userData } from "../../app/modules/userModules";
 import { InputProfile } from "../../common/InputProfile/InputProfile";
-import { getProfileService } from "../../services/apiCalls";
+import { getProfileService, updateProfileWithAvatarService, updateProfileWithoutAvatarService } from "../../services/apiCalls";
 import placeholderUpdateAvatar from "../../assets/placeholder_update_profile.png";
 
 export const UpdateProfile = () => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const rdxInstance = useSelector(userData)
     const userToken = (useSelector(userData)).credentials.token
-    const userDataToken = (useSelector(userData)).credentials.decoded
+    let userDataToken = (useSelector(userData)).credentials.decoded
     const imgsRoot = "https://fakebook-production-b29b.up.railway.app/api/public/"
     const [loadedUserProfile, setLoadedUserProfile] = useState(false)
     const [changesDetected, setChangesDetected] = useState("disabled")
     const [imageSrc, setImageSrc] = useState(null)
     
     const [userProfileData, setUserProfileData] = useState({
-        user: "",
+        name: "",
         avatar: ""
     })
 
     const [userProfilePrevData, setUserProfilePrevData] = useState({
-        user: "",
+        name: "",
         avatar: ""
     })
 
@@ -38,11 +41,11 @@ export const UpdateProfile = () => {
                 const fetched = await getProfileService(userToken)
                 setLoadedUserProfile(true)
                 setUserProfileData({
-                    user: fetched.data.name,
+                    name: fetched.data.name,
                     avatar: userDataToken.avatar
                 })
                 setUserProfilePrevData({
-                    user: fetched.data.name,
+                    name: fetched.data.name,
                     avatar: userDataToken.avatar
                 })
             } catch (error) {
@@ -54,7 +57,6 @@ export const UpdateProfile = () => {
     }, [userProfileData])
 
     useEffect(() => {
-        console.log(userProfileData)
         if(JSON.stringify(userProfileData) !== JSON.stringify(userProfilePrevData)){
             setChangesDetected("")
         } else {
@@ -76,7 +78,7 @@ export const UpdateProfile = () => {
     const handleFileChange = (e) => {
         if (e.target.files) {
             setUserProfileData({
-                user: userProfileData.user,
+                name: userProfileData.name,
                 avatar: e.target.files[0]
             })
 
@@ -86,6 +88,30 @@ export const UpdateProfile = () => {
             }
             reader.readAsDataURL(e.target.files[0])
               
+        }
+    }
+
+    const updateUserData = async () => {
+        try {
+            let fetched
+            if(userProfileData.avatar !== userProfilePrevData.avatar){
+                fetched = await updateProfileWithAvatarService(userToken, userProfileData)
+            } else {
+                fetched = await updateProfileWithoutAvatarService(userToken, userProfileData)
+            }
+            console.log(fetched);
+            setUserProfileData({
+                name: fetched.data.name,
+                avatar: fetched.data.avatar
+            })
+            setUserProfilePrevData({
+                name: fetched.data.name,
+                avatar: fetched.data.avatar
+            })
+            setImageSrc(null)
+            dispatch(update({ credentials: { ...rdxInstance.credentials, decoded: { ...rdxInstance.credentials.user, name: fetched.data.name, avatar: fetched.data.avatar }}}))
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -115,8 +141,8 @@ export const UpdateProfile = () => {
                 <InputProfile
                     inputName="Name" 
                     type="text" 
-                    name="user"
-                    value={userProfileData.user || ""}
+                    name="name"
+                    value={userProfileData.name || ""}
                     placeholder="Write your username"
                     onChange={e => detectChanges(e)}
                 />
@@ -128,7 +154,7 @@ export const UpdateProfile = () => {
                     placeholder="Write a bio"
                     disabled="disabled"
                 />
-                <button className="saveLocalChanges" disabled={changesDetected}>
+                <button className="saveLocalChanges" disabled={changesDetected} onClick={updateUserData}>
                     SAVE <i className="bi bi-save-fill saveButtonIcon"></i>
                 </button>
             </div>

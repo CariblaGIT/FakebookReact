@@ -17,12 +17,18 @@ export const userModule = createSlice({
           ...state,
           ...action.payload
         }
+      },
+      update: (state, action) => {
+        return {
+            ...state,
+            ...action.payload
+        }
       }
     }
 
 });
 
-export const { login, logout } = userModule.actions;
+export const { login, logout, update } = userModule.actions;
 
 export const userData = (state) => state.user;
 

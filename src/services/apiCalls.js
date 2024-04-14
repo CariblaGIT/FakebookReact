@@ -121,19 +121,21 @@ export const getOwnPostsService = async (token) => {
     }
 }
 
-export const UpdateProfileWithoutAvatar = async (token, data) => {
+export const updateProfileWithoutAvatarService = async (token, user) => {
+    const {avatar, ...otherUserData} = user;
+    console.log(otherUserData);
     const options = {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(otherUserData)
     };
   
     try {
-        const response = await fetch(`${server}users/profile`, options);
-
+        const response = await fetch(`${root}users/profile`, options);
+        console.log(response);
         const data = await response.json();
 
         if (!data.success) {
@@ -146,9 +148,9 @@ export const UpdateProfileWithoutAvatar = async (token, data) => {
     }
 }
 
-export const UpdateProfileWithAvatar = async (token, user, avatarFile) => {
+export const updateProfileWithAvatarService = async (token, user) => {
     const formData = new FormData()
-    formData.append("avatar", avatarFile)
+    formData.append("avatar", user.avatar)
     for(const userCredential in user){
         if(userCredential !== "avatar"){
             formData.append(`${userCredential}`, `${user[userCredential]}`)
@@ -164,7 +166,7 @@ export const UpdateProfileWithAvatar = async (token, user, avatarFile) => {
     };
   
     try {
-        const response = await fetch(`${server}users/profile`, options);
+        const response = await fetch(`${root}users/profile`, options);
 
         const data = await response.json();
 
