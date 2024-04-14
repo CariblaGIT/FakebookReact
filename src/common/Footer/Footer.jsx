@@ -14,13 +14,17 @@ export const Footer = () => {
         navigate("/profile")
     }
 
+    const navigateToNewPost = () => {
+        navigate("/post/create")
+    }
+
     if(locations.includes(location.pathname)){
         return (
             <footer className="footerDesign">
                 <div className="section" onClick={location.pathname !== "/timeline" ? navigateToTimeline : console.log("Im on timeline")}>
                     <i className={`bi bi-house homeIcon ${location.pathname === "/timeline" ? "selected" : ""}`}></i>
                 </div>
-                <div className="section">
+                <div className="section" onClick={navigateToNewPost}>
                     <i className="bi bi-plus-square postIcon"></i>
                 </div>
                 <div className="section">

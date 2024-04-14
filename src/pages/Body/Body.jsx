@@ -4,6 +4,7 @@ import { Register } from "../Register/Register";
 import { Timeline } from "../Timeline/Timeline";
 import { Profile } from "../Profile/Profile";
 import { UpdateProfile } from "../UpdateProfile/UpdateProfile";
+import { NewPost } from "../NewPost/NewPost";
 
 export const Body = () => {
     return (
@@ -15,6 +16,7 @@ export const Body = () => {
             <Route path="/timeline" element={<Timeline />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/edit" element={<UpdateProfile />} />
+            <Route path="/post/create" element={<NewPost />} />
         </Routes>
     );
 };
