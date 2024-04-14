@@ -1,0 +1,27 @@
+.inputProfileDesign{
+    width: 96vw;
+    height: auto;
+
+    margin: 0.5em;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.inputProfileDesignLabel{
+    font-size: 10px;
+}
+
+.inputProfileDesignInput{
+    width: 96vw;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.inputProfileDesignInput:focus{
+    outline: none;
+}
