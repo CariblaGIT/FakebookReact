@@ -27,6 +27,7 @@
 .userProfileIcon{
     height: 4em;
     width: 4em;
+    border-radius: 50%;
 }
 
 .profileInteractionsData{

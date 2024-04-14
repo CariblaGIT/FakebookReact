@@ -63,7 +63,7 @@ export const Profile = () => {
             <div className="userProfileData">
                 <div className="profileAvatar">
                     <img className="userProfileIcon" src={`${imgsRoot}avatar/${userDataToken.avatar}`}/>
-                    <p className="resaltedData">{userDataToken.username}</p>
+                    <p className="resaltedData">{userDataToken.name}</p>
                 </div>
                 <div className="profileInteractionsData">
                     <div className="postsData">
