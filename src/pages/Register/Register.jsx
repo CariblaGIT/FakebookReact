@@ -81,7 +81,7 @@ export const Register = () => {
         <div className="registerDesign">
             <div className="registerForm">
                 <h1 className="appNameRegister">Fakebook</h1>
-                <h4 className="subHeaderRegister">Register to see photos and videos of your friends</h4>
+                <p className="subHeaderRegister">Register to see photos and videos of your friends</p>
                 <div className="lineRegister"/>
                 <InputAuth 
                     className={"inputAuthForm"} 
