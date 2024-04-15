@@ -67,12 +67,12 @@ export const Login = () => {
                 setMsgSuccess(fetched.message + "\n" + "Redirecting to admin panel")
                 setTimeout(() => {
                     navigate("/admin")
-                }, 2000)
+                }, 3000)
             } else {
                 setMsgSuccess(fetched.message + "\n" + "Redirecting to your timeline")
                 setTimeout(() => {
                     navigate("/timeline")
-                }, 2000)
+                }, 3000)
             }
         } catch (error) {
             setSuccess(false)
