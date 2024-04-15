@@ -2,6 +2,7 @@ import "./AdminPanel.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
+import { Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../app/modules/userModules";
 import { userData } from "../../app/modules/userModules";
@@ -14,6 +15,7 @@ export const AdminPanel = () => {
     const [usersLoaded, setUsersLoaded] = useState(false)
     const [posts, setPosts] = useState([])
     const [postsLoaded, setPostsLoaded] = useState(false)
+    const [selectedEntity, setSelectedEntity] = useState("Users")
     const userToken = (useSelector(userData)).credentials.token
     const userDecodedToken = (useSelector(userData)).credentials.decoded
 
@@ -26,7 +28,6 @@ export const AdminPanel = () => {
     useEffect(() => {
         const getAllUsers = async () => {
             const fetched = await getUsersAsAdminService(userToken);
-            console.log(fetched);
             setUsers(fetched.data)
             setUsersLoaded(true)
         }
@@ -37,7 +38,6 @@ export const AdminPanel = () => {
     useEffect(() => {
         const getAllPosts = async () => {
             const fetched = await getAllPostsService(userToken);
-            console.log(fetched);
             setPosts(fetched.data)
             setPostsLoaded(true)
         }
@@ -48,6 +48,10 @@ export const AdminPanel = () => {
     const logoutUser = () => {
         dispatch(logout({ credentials: "" }))
         navigate("accounts/login")
+    }
+
+    const changeView = (view) => {
+        setSelectedEntity(view)
     }
 
     return (
@@ -61,7 +65,63 @@ export const AdminPanel = () => {
                 </div>
             </div>
             <div className="adminContent">
-                Content
+                <div className="selectEntityAdmin">
+                    <button onClick={() => changeView("Users")} className="selectUsers">Users</button>
+                    <button onClick={() => changeView("Posts")} className="selectPosts">Posts</button>
+                </div>
+                <div className="contentAdmin">
+                    {selectedEntity === "Users" ? (
+                        <Table responsive striped variant="dark">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {users.map((item, index) => {
+                                        return (
+                                            <tr key={index}>
+                                                <td>{index}</td>
+                                                <td>{item.name}</td>
+                                                <td>{item.email}</td>
+                                                <td>{item.role}</td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
+                        </Table>
+                    ) : (
+                        <Table responsive striped variant="dark">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Owner</th>
+                                    <th>Text</th>
+                                    <th>Likes</th>
+                                    <th>NumContent</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {posts.map((item, index) => {
+                                        return (
+                                            <tr key={index}>
+                                                <td>{index}</td>
+                                                <td>{item.owner.name}</td>
+                                                <td>{item.text}</td>
+                                                <td>{(item.likes).length}</td>
+                                                <td>{(item.content).length}</td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
+                        </Table>
+                    )}
+                </div>
             </div>
         </div>
     )
