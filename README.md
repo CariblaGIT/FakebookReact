@@ -89,33 +89,46 @@ After that, in localhost:PORT, will be launched the application, and you will be
 
 <h4 align="center">Login & Register</h4>
 
-<img src="./src/assets/readme/login.png">
-
-<img src="./src/assets/readme/register.png">
+<div align="center">
+    <img src="./src/assets/readme/login.png">
+    <img src="./src/assets/readme/register.png">
+</div>
 
 <h4 align="center">Timeline</h4>
 
-<img align="center" src="./src/assets/readme/timeline.png">
+<div align="center">
+    <img src="./src/assets/readme/timeline.png">
+</div>
 
 <h4 align="center">Search</h4>
 
-<img align="center" src="./src/assets/readme/search.png">
+<div align="center">
+    <img src="./src/assets/readme/search.png">
+</div>
 
 <h4 align="center">New post</h4>
 
-<img align="center" src="./src/assets/readme/new_post.png">
+<div align="center">
+    <img src="./src/assets/readme/new_post.png">
+</div>
 
 <h4 align="center">Profile</h4>
 
-<img align="center" src="./src/assets/readme/profile.png">
+<div align="center">
+    <img src="./src/assets/readme/profile.png">
+</div>
 
 <h4 align="center">Edit Profile</h4>
 
-<img align="center" src="./src/assets/readme/edit_profile.png">
+<div align="center">
+    <img src="./src/assets/readme/edit_profile.png">
+</div>
 
 <h4 align="center">Admin panel</h4>
 
-<img align="center" src="./src/assets/readme/admin_panel.png">
+<div align="center">
+    <img src="./src/assets/readme/admin_panel.png">
+</div>
 
 ## 🛠️ Future improvements
 
