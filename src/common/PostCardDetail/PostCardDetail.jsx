@@ -1,9 +1,9 @@
-import "./PostCard.css";
+import "./PostCardDetail.css";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { userData } from "../../app/modules/userModules";
 
-export const PostCard = ({post}) => {
+export const PostCardDetail = ({post}) => {
     const imgsRoot = "https://fakebook-production-b29b.up.railway.app/api/public/"
     const userId = (useSelector(userData)).credentials.decoded.userId
     const arrayContent = post.content
@@ -28,29 +28,29 @@ export const PostCard = ({post}) => {
     }
 
     return (
-        <div key={post._id} className="postCard">
-            <div className="postCardHeader">
-                <img className="userIcon" src={`${imgsRoot}avatar/${post.owner.avatar}`}/>
+        <div key={post._id} className="postCardDetail">
+            <div className="postCardHeaderDetail">
+                <img className="userIconDetail" src={`${imgsRoot}avatar/${post.owner.avatar}`}/>
                 <div className="userName">{post.owner.name}</div>
             </div>
-            <div className="postContent">
+            <div className="postContentDetail">
                 {arrayContent.map((item, index) => {
                     return (
-                        <img key={index} className="postContentImgs" src={`${imgsRoot}post/${item}`}/>
+                        <img key={index} className="postContentImgsDetail" src={`${imgsRoot}post/${item}`}/>
                     )
                 })}
             </div>
-            <div className="postInteractions">
-                <div className="buttonsInteractions">
+            <div className="postInteractionsDetail">
+                <div className="buttonsInteractionsDetail">
                     <i onClick={likeInteraction} className={`bi bi-heart${isLiked ? "-fill likedIcon" : " likeIcon"}`}></i>
                     <i onClick={commentInteraction} className="bi bi-chat commentIcon"></i>
                 </div>
             </div>
-            <div className="postData">
-                <div className="postLikes">
+            <div className="postDataDetail">
+                <div className="postLikesDetail">
                     <p>{arrayLikes.length} likes</p>
                 </div>
-                <div className="postText">
+                <div className="postTextDetail">
                     <p><b>{post.owner.name}</b> {post.text}</p>
                 </div>
             </div>

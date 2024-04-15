@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { userData } from "../../app/modules/userModules";
 import { getOwnPostsService, getProfileService } from "../../services/apiCalls";
+import { PopUpPost } from "../../common/PopUpPost/PopUpPost";
 
 export const Profile = () => {
     const navigate = useNavigate()
@@ -14,6 +15,8 @@ export const Profile = () => {
         following: []
     })
     const [userPosts, setUserPosts] = useState([])
+    const [selectedPost, setSelectedPost] = useState("")
+    const [showDetail, setShowDetail] = useState(false)
     const [loadedUserProfile, setLoadedUserProfile] = useState(false)
     const [loadedUserPosts, setLoadedUserPosts] = useState(false)
     const userToken = (useSelector(userData)).credentials.token
@@ -58,6 +61,16 @@ export const Profile = () => {
         navigate("/profile/edit")
     }
 
+    const showDetailInfo = (item) => {
+        setSelectedPost(item)
+        setShowDetail(true)
+    }
+
+    const closingPostDetail = () => {
+        setShowDetail(false)
+        setSelectedPost("")
+    }
+
     return (
         <div className="profileDesign">
             <div className="userProfileData">
@@ -92,13 +105,20 @@ export const Profile = () => {
                     <div className="profileOwnPosts">
                         {userPosts.map(item => {
                             return (
-                                <div key={item._id} className="postCardView">
+                                <div key={item._id} className="postCardView" onClick={() => showDetailInfo(item)}>
                                     <img className="postPreviewImg" src={`${imgsRoot}post/${item.content[0]}`}/>
                                 </div>
                             )
                         })}
                     </div>
                 )}
+            {showDetail && (
+                <PopUpPost
+                    show={showDetail}
+                    item={selectedPost}
+                    onHide={closingPostDetail}
+                />
+            )}
         </div>
     )
 }
