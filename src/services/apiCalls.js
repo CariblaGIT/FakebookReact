@@ -231,3 +231,26 @@ export const givingLikesService = async (token, postId) => {
         return error;
     }
 }
+
+export const getUsersAsUserService = async (token) => {
+    const options = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    };
+  
+    try {
+        const response = await fetch(`${root}users/list`, options);
+        const data = await response.json();
+
+        if (!data.success) {
+            throw new Error(data.message);
+        }
+
+        return data;
+    } catch (error) {
+        return error;
+    }
+}
