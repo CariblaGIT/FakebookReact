@@ -2,12 +2,14 @@ import "./Login.css";
 import { decodeToken } from "react-jwt";
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../app/modules/userModules";
 import { loginService } from "../../services/apiCalls";
 import { InputAuth } from "../../common/InputAuth/InputAuth";
 import { ButtonAuth } from "../../common/ButtonAuth/ButtonAuth";
 import { GoogleButton } from "../../common/GoogleButton/GoogleButton";
+import { userData } from "../../app/modules/userModules";
 
 export const Login = () => {
     const navigate = useNavigate()
@@ -15,11 +17,18 @@ export const Login = () => {
     const [success, setSuccess] = useState(false)
     const [msgSuccess, setMsgSuccess] = useState("")
     const [notAllowToLogin, setNotAllowToLogin] = useState(true)
+    const userToken = (useSelector(userData)).credentials.token
 
     const [credentials, setCredentials] = useState({
         email : "",
         password : ""
     })
+
+    useEffect(() => {
+        if (userToken) {
+            navigate("/timeline")
+        }
+    }, [userToken])
 
     useEffect(() => {
         if(credentials.email !== "" && credentials.password !== ""){
@@ -54,10 +63,17 @@ export const Login = () => {
                 decoded: decodedToken,
             }
             dispatch(login({ credentials: passport }))
-            setMsgSuccess(fetched.message + "\n" + "Redirecting to your timeline")
-            setTimeout(() => {
-                navigate("/timeline")
-            }, 2000)
+            if(decodedToken.roleName === "super_admin"){
+                setMsgSuccess(fetched.message + "\n" + "Redirecting to admin panel")
+                setTimeout(() => {
+                    navigate("/admin")
+                }, 2000)
+            } else {
+                setMsgSuccess(fetched.message + "\n" + "Redirecting to your timeline")
+                setTimeout(() => {
+                    navigate("/timeline")
+                }, 2000)
+            }
         } catch (error) {
             setSuccess(false)
             setMsgSuccess(error.message)
