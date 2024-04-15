@@ -91,7 +91,6 @@ export const Profile = () => {
                 ) : (
                     <div className="profileOwnPosts">
                         {userPosts.map(item => {
-                            console.log(item);
                             return (
                                 <div key={item._id} className="postCardView">
                                     <img className="postPreviewImg" src={`${imgsRoot}post/${item.content[0]}`}/>

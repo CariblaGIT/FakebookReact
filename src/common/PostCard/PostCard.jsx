@@ -36,7 +36,7 @@ export const PostCard = ({post}) => {
             <div className="postContent">
                 {arrayContent.map((item, index) => {
                     return (
-                        <img key={index} className="postContentImgs" src={item}/>
+                        <img key={index} className="postContentImgs" src={`${imgsRoot}post/${item}`}/>
                     )
                 })}
             </div>
