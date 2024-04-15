@@ -6,6 +6,7 @@ import { Profile } from "../Profile/Profile";
 import { UpdateProfile } from "../UpdateProfile/UpdateProfile";
 import { NewPost } from "../NewPost/NewPost";
 import { SearchUsers } from "../SearchUsers/SearchUsers";
+import { AdminPanel } from "../AdminPanel/AdminPanel";
 
 export const Body = () => {
     return (
@@ -19,6 +20,7 @@ export const Body = () => {
             <Route path="/profile/edit" element={<UpdateProfile />} />
             <Route path="/post/create" element={<NewPost />} />
             <Route path="/search" element={<SearchUsers />} />
+            <Route path="/admin" element={<AdminPanel />} />
         </Routes>
     );
 };
