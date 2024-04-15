@@ -8,7 +8,7 @@ export const Header = () => {
     const location = useLocation()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const locations = ["/timeline", "/profile"]
+    const locations = ["/timeline", "/profile", "/search"]
 
     const logoutUser = () => {
         dispatch(logout({ credentials: "" }))

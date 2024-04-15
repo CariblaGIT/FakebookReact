@@ -1,0 +1,44 @@
+.searchUsersDesign{
+    background-color: var(--white-bone);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100vw;
+    height: auto;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.searcherSection{
+    width: 100vw;
+    height: 5vh;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.finderIcon{
+    font-size: 1em;
+    margin: 1em;
+}
+
+.finderInput{
+    border-radius: 5%;
+    width: 80vw;
+}
+
+.finderInput:focus{
+    outline: none;
+}
+
+.listUsersSection{
+    width: 100vw;
+    min-height: 70vh;
+    background-color: blueviolet;
+    padding: 1em;
+}
