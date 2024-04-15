@@ -90,8 +90,8 @@ After that, in localhost:PORT, will be launched the application, and you will be
 <h4 align="center">Login & Register</h4>
 
 <div align="center">
-    <img src="./src/assets/readme/login.png">
-    <img src="./src/assets/readme/register.png">
+    <img width="70" src="./src/assets/readme/login.png">
+    <img width="70" src="./src/assets/readme/register.png">
 </div>
 
 <h4 align="center">Timeline</h4>
