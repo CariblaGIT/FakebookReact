@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { userData } from "../../app/modules/userModules";
+import { makePostService } from "../../services/apiCalls";
 
 export const NewPost = () => {
     const navigate = useNavigate()
@@ -56,7 +57,10 @@ export const NewPost = () => {
     }
 
     const postNewPost = async () => {
-        console.log("Posting");
+        const fetched = await makePostService(userToken, post)
+        if(fetched.success === true){
+            navigate("/timeline")
+        }
     }
 
     return (

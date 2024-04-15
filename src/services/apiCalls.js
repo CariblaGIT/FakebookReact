@@ -179,3 +179,33 @@ export const updateProfileWithAvatarService = async (token, user) => {
         return error;
     }
 }
+
+export const makePostService = async (token, post) => {
+    const formData = new FormData()
+    formData.append("text", post.text)
+    formData.append("post", post.post)
+
+    const options = {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        },
+        body: formData,
+    };
+
+    try {
+        const response = await fetch(`${root}posts`, options);
+        const data = await response.json();
+
+        if (!data.success) {
+            throw new Error(data.message);
+        }
+
+        return data;
+    } catch (error) {
+        return {
+            success: false,
+            message: error.message
+        };
+    }
+}
