@@ -45,6 +45,12 @@
     justify-content: center;
 }
 
+.contentImgPost{
+    height: 40vh;
+    max-width: 80vw;
+    border-radius: 5%;
+}
+
 .descriptionAreaNewPost{
     height: 30vh;
     width: 80vw;

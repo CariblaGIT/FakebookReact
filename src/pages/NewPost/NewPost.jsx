@@ -8,6 +8,11 @@ export const NewPost = () => {
     const navigate = useNavigate()
     const userToken = (useSelector(userData)).credentials.token
     const [imageSrc, setImageSrc] = useState(null)
+    const [allowToPost, setAllowToPost] = useState("disabled")
+    const [post, setPost] = useState({
+        text: "",
+        post: ""
+    })
 
     useEffect(() => {
         if (!userToken) {
@@ -15,8 +20,43 @@ export const NewPost = () => {
         }
     }, [userToken])
 
+    useEffect(() => {
+        if(post.text !== "" && post.post !== ""){
+            setAllowToPost("")
+        } else {
+            setAllowToPost("disabled")
+        }
+    }, [post])
+
     const backToTimeline = () => {
         navigate("/timeline")
+    }
+
+    const handleFileChange = (e) => {
+        if (e.target.files) {
+            setPost({
+                text: post.text,
+                post: e.target.files[0]
+            })
+
+            const reader = new FileReader()
+            reader.onload = (e) => {
+                setImageSrc(e.target.result)
+            }
+            reader.readAsDataURL(e.target.files[0])
+              
+        }
+    }
+
+    const handlePostChange = (e) => {
+        setPost((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }))
+    }
+
+    const postNewPost = async () => {
+        console.log("Posting");
     }
 
     return (
@@ -28,17 +68,26 @@ export const NewPost = () => {
             <div className="contentNewPost">
                 <div className="contentSelector">
                     {imageSrc === null ? (
-                        <>Select an image</>
+                        <>
+                            <label htmlFor="file">Select post image</label>
+                            <input id="file" type="file" name="post" className="fileSelector" onChange={handleFileChange}/>
+                        </>
                     ) : (
                         <img className="contentImgPost" src={imageSrc} alt="Selected Image"/>
                     )}
                 </div>
             </div>
             <div className="descriptionNewPost">
-                <textarea className="descriptionAreaNewPost" placeholder="Write your description" name="description" id="description" cols="30" rows="10"></textarea>
+                <textarea 
+                    className="descriptionAreaNewPost" 
+                    placeholder="Write your description" 
+                    name="text"
+                    value={post.text || ""}
+                    onChange={e => handlePostChange(e)}
+                />
             </div>
             <div className="actionsNewPost">
-                <button className="buttonAddNewPost">Add Post</button>
+                <button disabled={allowToPost} className="buttonAddNewPost" onClick={postNewPost}>Add Post</button>
             </div>
         </div>
     )
