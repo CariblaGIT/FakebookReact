@@ -51,8 +51,11 @@ export const SearchUsers = () => {
                     if(item._id !== userId){
                         return (
                             <div key={item._id} className="cardUserListed">
-                                <p>{item.name}</p>
-                                <button className="followButton">Follow</button>
+                                <p className="userNameListed">{item.name}</p>
+                                <button className="followButton">
+                                    Follow
+                                    <i className="bi bi-person-fill-add addUserIcon"></i>
+                                </button>
                             </div>
                         )
                     }
