@@ -10,7 +10,7 @@ export const PostCard = ({post}) => {
     const userToken = (useSelector(userData)).credentials.token
     const arrayContent = post.content
     const [isLiked, setIsLiked] = useState(false)
-    const arrayLikes = post.likes
+    let arrayLikes = post.likes
 
     useEffect(() => {
         for(let i = 0; i < arrayLikes.length; i++){
@@ -26,8 +26,10 @@ export const PostCard = ({post}) => {
             if(fetched.success){
                 if(isLiked === true){
                     setIsLiked(false)
+                    arrayLikes.filter(item => item !== userId)
                 } else {
                     setIsLiked(true)
+                    arrayLikes.push(userId)
                 }
             }
         } catch (error) {
