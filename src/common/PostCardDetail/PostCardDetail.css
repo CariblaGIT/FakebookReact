@@ -1,0 +1,121 @@
+.postCardDetail{
+    height: 70vh;
+    width: 65vw;
+
+    background-color: var(--white-bone);
+
+    margin: 1em 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.postInteractionsDetail{
+    width: 65vw;
+    height: 5vh;
+    margin-top: 1em;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.postCardHeaderDetail{
+    width: 65vw;
+    height: 20vh;
+    padding-top: 1.5em;
+    padding-bottom: 1em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.buttonsInteractionsDetail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userIconDetail{
+    height: 2em;
+    width: 3em;
+    margin-right: 1em;
+    padding-left: 1em;
+}
+
+.postContentDetail{
+    height: 60vh;
+    width: 65vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.postContentImgsDetail{
+    height: 40vh;
+    width: 65vw;
+}
+
+.likeIcon, .commentIcon{
+    font-size: 2em;
+    margin: 0.3em;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.likeIcon:hover, .commentIcon:hover{
+    color: grey;
+    transition: 0.5s;
+}
+
+.likedIcon{
+    color: red;
+    font-size: 2em;
+    margin: 0.3em;
+}
+
+.likedIcon:hover{
+    color: #bc0000;
+    transition: 0.5s;
+}
+
+.postDataDetail{
+    height: 30vh;
+    width: 65vw;
+    text-align: start;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.postLikesDetail{
+    height: 5vh;
+    width: 65vw;
+    display: flex;
+}
+
+.postLikesDetail p, .postTextDetail p{
+    padding-left: 0.5em;
+    margin-block-end: 0em;
+}
+
+.postTextDetail{
+    height: 15vh;
+    width: 65vw;
+    display: flex;
+    justify-content: flex-start;
+}

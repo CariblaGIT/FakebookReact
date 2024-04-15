@@ -2,9 +2,31 @@
     height: 12vh;
     width: 100vw;
 
-    background-color: #597199;
+    background-color: var(--white-bone);
 
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.appNameHeader, .userInteractions{
+    height: 12vh;
+    width: 50vw;
+    display: flex;
+    align-items: center;
+}
+
+.appNameHeader{
+    justify-content: flex-start;
+    padding-left: 1em;
+}
+
+.userInteractions{
+    justify-content: flex-end;
+    padding-right: 1em;
+}
+
+.favouritesIcon, .privatesIcon{
+    font-size: 1.5em;
+    margin: 0.3em;
 }

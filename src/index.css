@@ -3,6 +3,8 @@
   line-height: 1.5;
   font-weight: 400;
 
+  overflow-x: hidden;
+
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
@@ -11,6 +13,19 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --white-bone: #fafafa;
+  --main-blue: #597199;
+  --main-blue-secondary: #3f619b;
+  --light-blue-buttons: #4285F4;
+  --light-blue-buttons-secondary: #357ae8;
+  --electric-blue: #1b6fff;
+  --electric-blue-secondary: #1450b9;
+  --secondary-blue: #2e4682;
+  --main-dark-blue: #1d306d;
+  --grey-box-boundary: #dbdbdb;
+  --grey-profile: #b1b1b1;
+  --grey-disabled: #6d6d6d;
 }
 
 a {
@@ -26,7 +41,6 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
   min-height: 100vh;
 }
 
@@ -39,7 +53,6 @@ button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;

@@ -1,0 +1,78 @@
+.searchUsersDesign{
+    background-color: var(--white-bone);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100vw;
+    height: auto;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.searcherSection{
+    width: 100vw;
+    height: 5vh;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.finderIcon{
+    font-size: 1em;
+    margin: 1em;
+}
+
+.finderInput{
+    border-radius: 5%;
+    width: 80vw;
+}
+
+.finderInput:focus{
+    outline: none;
+}
+
+.listUsersSection{
+    width: 90vw;
+    min-height: 70vh;
+    padding-top: 1em;
+    padding-bottom: 10vh;
+}
+
+.cardUserListed{
+    width: 90vw;
+    border: 1px solid var(--grey-profile);
+
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.userNameListed{
+    margin-left: 0.2em;
+    margin-block-end: 0em;
+}
+
+.addUserIcon, .removeUserIcon{
+    font-size: 1em;
+    margin-left: 0.2em;
+}
+
+.followButton{
+    background-color: var(--light-blue-buttons);
+    color: #fff;
+}
+
+.unfollowButton{
+    background-color: var(--light-blue-buttons-secondary);
+    font-size: 0.85em;
+    color: #fff;
+}
