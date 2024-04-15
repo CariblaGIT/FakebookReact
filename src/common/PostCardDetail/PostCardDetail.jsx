@@ -18,9 +18,19 @@ export const PostCardDetail = ({post}) => {
         }
     }, [isLiked])
 
-    const likeInteraction = () => {
-        console.log("Liked // Disliked");
-        isLiked ? setIsLiked(false) : setIsLiked(true)
+    const likeInteraction = async (postId) => {
+        try {
+            const fetched = await givingLikesService(userToken, postId)
+            if(fetched.success){
+                if(isLiked === true){
+                    setIsLiked(false)
+                } else {
+                    setIsLiked(true)
+                }
+            }
+        } catch (error) {
+            console.log(error) 
+        }
     }
 
     const commentInteraction = () => {
@@ -42,7 +52,7 @@ export const PostCardDetail = ({post}) => {
             </div>
             <div className="postInteractionsDetail">
                 <div className="buttonsInteractionsDetail">
-                    <i onClick={likeInteraction} className={`bi bi-heart${isLiked ? "-fill likedIcon" : " likeIcon"}`}></i>
+                    <i onClick={() => likeInteraction(post._id)} className={`bi bi-heart${isLiked ? "-fill likedIcon" : " likeIcon"}`}></i>
                     <i onClick={commentInteraction} className="bi bi-chat commentIcon"></i>
                 </div>
             </div>

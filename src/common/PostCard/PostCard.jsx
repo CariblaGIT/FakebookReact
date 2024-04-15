@@ -2,10 +2,12 @@ import "./PostCard.css";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { userData } from "../../app/modules/userModules";
+import { givingLikesService } from "../../services/apiCalls";
 
 export const PostCard = ({post}) => {
     const imgsRoot = "https://fakebook-production-b29b.up.railway.app/api/public/"
     const userId = (useSelector(userData)).credentials.decoded.userId
+    const userToken = (useSelector(userData)).credentials.token
     const arrayContent = post.content
     const [isLiked, setIsLiked] = useState(false)
     const arrayLikes = post.likes
@@ -18,9 +20,19 @@ export const PostCard = ({post}) => {
         }
     }, [isLiked])
 
-    const likeInteraction = () => {
-        console.log("Liked // Disliked");
-        isLiked ? setIsLiked(false) : setIsLiked(true)
+    const likeInteraction = async (postId) => {
+        try {
+            const fetched = await givingLikesService(userToken, postId)
+            if(fetched.success){
+                if(isLiked === true){
+                    setIsLiked(false)
+                } else {
+                    setIsLiked(true)
+                }
+            }
+        } catch (error) {
+            console.log(error) 
+        }
     }
 
     const commentInteraction = () => {
@@ -42,7 +54,7 @@ export const PostCard = ({post}) => {
             </div>
             <div className="postInteractions">
                 <div className="buttonsInteractions">
-                    <i onClick={likeInteraction} className={`bi bi-heart${isLiked ? "-fill likedIcon" : " likeIcon"}`}></i>
+                    <i onClick={() => likeInteraction(post._id)} className={`bi bi-heart${isLiked ? "-fill likedIcon" : " likeIcon"}`}></i>
                     <i onClick={commentInteraction} className="bi bi-chat commentIcon"></i>
                 </div>
             </div>

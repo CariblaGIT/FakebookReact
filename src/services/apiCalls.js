@@ -123,7 +123,6 @@ export const getOwnPostsService = async (token) => {
 
 export const updateProfileWithoutAvatarService = async (token, user) => {
     const {avatar, ...otherUserData} = user;
-    console.log(otherUserData);
     const options = {
         method: "PUT",
         headers: {
@@ -135,7 +134,7 @@ export const updateProfileWithoutAvatarService = async (token, user) => {
   
     try {
         const response = await fetch(`${root}users/profile`, options);
-        console.log(response);
+
         const data = await response.json();
 
         if (!data.success) {
@@ -207,5 +206,28 @@ export const makePostService = async (token, post) => {
             success: false,
             message: error.message
         };
+    }
+}
+
+export const givingLikesService = async (token, postId) => {
+    const options = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    };
+  
+    try {
+        const response = await fetch(`${root}posts/like/${postId}`, options);
+        const data = await response.json();
+
+        if (!data.success) {
+            throw new Error(data.message);
+        }
+
+        return data;
+    } catch (error) {
+        return error;
     }
 }
