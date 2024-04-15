@@ -61,12 +61,18 @@
     margin-block-end: 0em;
 }
 
-.addUserIcon{
+.addUserIcon, .removeUserIcon{
     font-size: 1em;
     margin-left: 0.2em;
 }
 
 .followButton{
     background-color: var(--light-blue-buttons);
+    color: #fff;
+}
+
+.unfollowButton{
+    background-color: var(--light-blue-buttons-secondary);
+    font-size: 0.85em;
     color: #fff;
 }
